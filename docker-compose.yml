@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  back:
+    build: ./back
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    
+  nginx:
+    build:
+      context: ./nginx
+    # command: './nginx/start-nginx.sh'
+    ports:
+      - "8000:8000"
+    # tty: true
+    # stdin_open: true
+    depends_on:
+      - back
+
+  front:
+    build: ./front
+    volumes:
+      - .:/app
+    tty: true
+    stdin_open: true
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: drf
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: ‘yes’
+    volumes: 
+      - ./db:/var/lib/mysql
+    ports: 
+      - 3306:3306
+
+volumes:
+  node-modules-volume:
