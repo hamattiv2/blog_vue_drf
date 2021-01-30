@@ -1,5 +1,10 @@
 FROM node:lts-alpine
 
-RUN apk update && \
-    npm install -g npm && \
-    npm install -g vue-cli
+WORKDIR /usr/src/app
+COPY vue.config.js .
+
+RUN npm install -g npm @vue/cli@3.11.0
+
+# EXPOSE 8080
+
+CMD ["/bin/sh"]

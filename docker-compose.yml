@@ -1,36 +1,46 @@
-version: "3.8"
+version: '3'
 
 services:
-  back:
-    build: ./back
-    volumes:
-      - .:/app
-    ports:
-      - "3000:3000"
-    environment:
-      - PYTHONUNBUFFERED=1
-    tty: true
-    stdin_open: true
-    depends_on:
-      - db
-    
   nginx:
     build:
-      context: ./nginx
-    # command: './nginx/start-nginx.sh'
+      context: ./
+      dockerfile: ./nginx/Dockerfile
+    environment:
+      TZ: 'Asia/Tokyo'
     ports:
-      - "8000:8000"
-    # tty: true
-    # stdin_open: true
+      - 8000:8000
+    volumes:
+      - ./nginx/logs/nginx/:/var/log/nginx/
+      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./back/static:/var/www/static/
     depends_on:
       - back
-
-  front:
-    build: ./front
-    volumes:
-      - .:/app
     tty: true
     stdin_open: true
+
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    # command: 'sh /server/start.sh'
+    expose:
+      - "8001"
+    volumes:
+      - ./back:/app/
+    tty: true
+    stdin_open: true
+
+  front:
+    build:
+      context: ./front
+    ports:
+      - 8080:8080
+    privileged: true
+    volumes:
+      - ./front:/usr/src/app
+    tty: true
+    stdin_open: true
+    command: /bin/sh
 
   db:
     image: mysql:5.7
