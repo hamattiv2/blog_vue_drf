@@ -17,6 +17,10 @@
 
     <v-content>
       <HelloWorld/>
+
+      <h2>ここに結果が表示されます → {{ result }}</h2>
+      <button @click="getAPI()">クリック！</button>
+
     </v-content>
   </v-app>
 </template>
@@ -31,8 +35,21 @@ export default {
   },
   data () {
     return {
-      //
+      result: 'No Result',
+      url: 'http://localhost:8000/blog/get/'
+    }
+  },
+  methods: {
+    getAPI () {
+      this.$axios.get(this.url)
+      .then(response => {
+        this.result = response.data.data.status
+      })
+      .catch(() => {
+        console.log('aaaa')
+      })
     }
   }
+
 }
 </script>

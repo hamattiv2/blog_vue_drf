@@ -4,3 +4,7 @@ djoser==2.0.3
 djangorestframework-simplejwt==4.3.0
 uwsgi==2.0.17.1
 django-cors-headers==3.1.0
+django-cleanup
+django-cors-headers
+pillow
+mysqlclient==1.4.6
