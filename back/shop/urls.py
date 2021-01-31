@@ -1,8 +1,8 @@
 from django.urls import include, path
-from .views import *
+from . import views
 
-app_name = 'shop'
+# app_name = 'shop'
 
 urlpatterns = [
-    path('get/', GetTestAPI.as_view()),
+    path('get/', views.GetTestAPI.as_view(), name="test"),
 ]

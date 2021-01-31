@@ -41,14 +41,15 @@ export default {
   data () {
     return {
       result: 'No Result',
-      url: 'http://localhost:8000/back/testapi/get/'
+      url: 'http://localhost:8000/back/shop/get/'
     }
   },
   methods: { 
     getAPI() {
       this.$axios.get(this.url)
       .then(response => {
-        this.result = response.data.message
+        console.log(response)
+        this.result = response.data.status
       })
       .catch(() => {
         this.result = '取得に失敗しました'

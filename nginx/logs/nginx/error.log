@@ -1,3 +1,4 @@
 2021/01/29 07:29:07 [emerg] 1#1: host not found in upstream "back:8001" in /etc/nginx/sites-enabled/default:4
 2021/01/31 07:08:28 [emerg] 1#1: "daemon" directive is duplicate in /etc/nginx/nginx.conf:4
 2021/01/31 07:11:03 [emerg] 1#1: "daemon" directive is duplicate in /etc/nginx/nginx.conf:4
+2021/01/30 22:50:07 [emerg] 212#212: "location" directive is not allowed here in /etc/nginx/nginx.conf:45
