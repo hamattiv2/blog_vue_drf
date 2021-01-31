@@ -128,21 +128,9 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
     'http://127.0.0.1:8080',
-    # 'localhost:8000',
-    # '127.0.0.1:8000'
 )
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8080',
-    # 'http://127.0.0.1:8080'
-]
-
-CORS_ALLOW_HEADERS = (
-    'x-requested-with',
-    'content-type',
-    'accept',
-    'origin',
-    'authorization',
-    'x-csrftoken',
-    'accept-encoding'
-)
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:8080',
+#     'http://127.0.0.1:8080'
+# ]
