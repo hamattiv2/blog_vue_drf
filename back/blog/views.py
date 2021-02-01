@@ -6,7 +6,7 @@ from .serializers import CategorySerializer, PostSerializer, SimplePostSerialize
 from rest_framework.views import APIView
 
 class PostPagination(pagination.PageNumberPagination):
-    page_size = 3
+    page_size = 4
 
     def get_paginated_response(self, data):
         return response.Response({
