@@ -11,7 +11,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField('タイトル', max_length=40)
-    thumbnail = models.ImageField('サムネイル', blank=True, null=True)
+    thumbnail = models.ImageField('サムネイル', blank=True, null=True, default='/media/404_not_found.png')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name='カテゴリ')
     lead_text = models.TextField('紹介文')
     main_text = models.TextField('本文')

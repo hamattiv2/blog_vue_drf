@@ -8,7 +8,11 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
+// Vue.prototype.$axios = (url, opts) => fetch(url, opts)
+Vue.prototype.$postUrl = 'http://127.0.0.1:8000/blog/api/posts/'
+Vue.prototype.$categoryUrl = 'http://127.0.0.1:8000/blog/api/categories/'
 axios.defaults.withCredentials = true;
+
 
 // axios.defaults.baseURL = 'http://localhost:8000' //バックエンド側のIPとポート
 // axios.defaults.headers.common['Accept'] = 'application/json'

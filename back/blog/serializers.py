@@ -5,7 +5,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ('id', 'name', 'category')
+        fields = ('id', 'name', 'color')
 
 # 一覧表示
 class SimplePostSerializer(serializers.ModelSerializer):
