@@ -38,12 +38,22 @@
         methods: {
             ...mapActions(['UPDATE_POSTS']),
             getPostPrevious() {
+                const url = new URL(this.getPreviousURL)
+                const keyword = url.searchParams.get('keyword') || ''
+                const category = url.searchParams.get('category') || ''
+                const page = url.searchParams.get('page') || 1
+                this.$router.push({name: 'posts', query: { keyword, category, page }}) 
                 this.$axios(this.getPreviousURL)
                 .then(response => {
                     this.UPDATE_POSTS(response.data)
                 })
             },
             getPostNext() {
+                const url = new URL(this.getNextURL)
+                const keyword = url.searchParams.get('keyword') || ''
+                const category = url.searchParams.get('category') || ''
+                const page = url.searchParams.get('page') || 1
+                this.$router.push({name: 'posts', query: { keyword, category, page }}) 
                 this.$axios(this.getNextURL)
                 .then(response => {
                     this.UPDATE_POSTS(response.data)
@@ -51,7 +61,14 @@
             }
         },
         created() {
-            this.$axios(this.$postUrl)
+            let postUrl = this.$postUrl
+            const params = this.$route.query
+            const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&')
+            if (queryString) {
+                postUrl = postUrl + '?' + queryString
+            }
+            console.log(postUrl)
+            this.$axios(postUrl)
             .then(response => {
                 this.UPDATE_POSTS(response.data)
             })
